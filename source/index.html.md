@@ -58,8 +58,8 @@ includes:
   - appendix_enum
 
 header_navigators:
-  - <a href="https://ascendex.github.io/ascendex-pro-api/#ascendex-pro-api-documentation">Cash/Margin APIs</a>
-  - <a href="https://ascendex.github.io/ascendex-futures-api-doc-v2/#ascendex-futures-trading-api-documentation" class="current">Futures APIs</a>
+  - <a href="https://ascendex.github.io/ascendex-pro-api/">Cash/Margin APIs</a>
+  - <a href="https://ascendex.github.io/ascendex-futures-pro-api-v2/" class="current">Futures APIs</a>
 
 search: true
 
