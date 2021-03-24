@@ -66,7 +66,7 @@ search: true
 code_clipboard: true
 ---
 
-# Introducing Futures Pro (v2) APIs (Mainnet / Testnet)
+# Introducing Futures Pro (v2) APIs
 
 ## Change Log
 
