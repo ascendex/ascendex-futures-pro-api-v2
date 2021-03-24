@@ -47,12 +47,12 @@ Discount factor can be found in the `discountFactor` field from the [Futures Col
 
 **For the isolated group**
 
-Group Collateral Balance = isolated margin + unrealized pnl of the isolated position
+* Group Collateral Balance = isolated margin + unrealized pnl of the isolated position
 
 
 **For the crossed group**
 
-Group Collateral Balance = total margin of the crossed group + total unrealized pnl of all positions in the crossed group
+* Group Collateral Balance = total margin of the crossed group + total unrealized pnl of all positions in the crossed group
 
 
 The **Group Collateral Balance** is important to determine the risk level of the margin group. If it becomes lower than the **position maintanence margin**, 
