@@ -33,7 +33,7 @@
                 "symbol"               : "BTC-PERP",     // contract symbol
                 "side"                 : "LONG",         // side
                 "position"             : "0.5",          // positive for long position and negative for short position
-                "referenceCost"        : "16800",        // reference cost
+                "referenceCost"        : "-16800",       // reference cost
                 "unrealizedPnl"        : "0",            // unrealized pnl 
                 "realizedPnl"          : "0",            // realized pnl
                 "avgOpenPrice"         : "0",            // Average Opening Price
@@ -63,5 +63,6 @@ Get current position data - a full snapshot of your futures account.
 **Prehash String**
 
 `<timestamp>+v2/futures/position`
+
 
 
