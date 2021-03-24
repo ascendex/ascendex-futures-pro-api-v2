@@ -350,7 +350,13 @@
                             <a href="#contract-position-notional-cpn" class="toc-h3 toc-link" data-title="Contract Position Notional (CPN)">Contract Position Notional (CPN)</a>
                           </li>
                           <li>
+                            <a href="#margin-group" class="toc-h3 toc-link" data-title="Margin Group">Margin Group</a>
+                          </li>
+                          <li>
                             <a href="#total-margin" class="toc-h3 toc-link" data-title="Total Margin">Total Margin</a>
+                          </li>
+                          <li>
+                            <a href="#group-collateral-balance" class="toc-h3 toc-link" data-title="Group Collateral Balance">Group Collateral Balance</a>
                           </li>
                           <li>
                             <a href="#position-initial-maintenance-margin-rate" class="toc-h3 toc-link" data-title="Position Initial/Maintenance Margin Rate">Position Initial/Maintenance Margin Rate</a>
@@ -360,6 +366,12 @@
                           </li>
                           <li>
                             <a href="#liquidation-price" class="toc-h3 toc-link" data-title="Liquidation Price">Liquidation Price</a>
+                          </li>
+                          <li>
+                            <a href="#unrealized-pnl" class="toc-h3 toc-link" data-title="Unrealized PnL">Unrealized PnL</a>
+                          </li>
+                          <li>
+                            <a href="#realized-pnl" class="toc-h3 toc-link" data-title="Realized PnL">Realized PnL</a>
                           </li>
                       </ul>
                   </li>
@@ -681,12 +693,25 @@
 </ul>
 
 <p>CPN is defined for each contract.</p>
+<h3 id='margin-group'>Margin Group</h3>
+<p><strong>The Isolated Group</strong></p>
+
+<p>The isolated group manages a single position with a certain amount of margin moved out of the crossed group. It isolates the risk of the position from other 
+margin groups. Your maximum loss will be limited to the total margin moved into the isolated group.</p>
+
+<p>Each account may have at most one isolated group per contract.</p>
+
+<p><strong>The Crossed Group</strong></p>
+
+<p>The crossed group manages all positions except those in isolated groups. </p>
 <h3 id='total-margin'>Total Margin</h3>
 <p><strong>For the isolated group</strong></p>
 
 <p>Total margin is set by the user. You can find its value in the <code>isolatedMargin</code> field from the <a href="#position">Position</a> endpoint. </p>
 
 <p>You can increase / decrease the total margin of the isolated margin group via the <a href="#change-margin-for-isolated-positions">Change Margin</a> endpoint.</p>
+
+<p>For the isolated group, we also refer to <strong>total margin</strong> as <strong>isolated margin</strong>.</p>
 
 <p><strong>For the crossed group</strong></p>
 
@@ -695,6 +720,17 @@
 </ul>
 
 <p>Discount factor can be found in the <code>discountFactor</code> field from the <a href="#futures-collateral-asset-info">Futures Collateral Asset Info</a> endpoint.</p>
+<h3 id='group-collateral-balance'>Group Collateral Balance</h3>
+<p><strong>For the isolated group</strong></p>
+
+<p>Group Collateral Balance = isolated margin + unrealized pnl of the isolated position</p>
+
+<p><strong>For the crossed group</strong></p>
+
+<p>Group Collateral Balance = total margin of the crossed group + total unrealized pnl of all positions in the crossed group</p>
+
+<p>The <strong>Group Collateral Balance</strong> is important to determine the risk level of the margin group. If it becomes lower than the <strong>position maintanence margin</strong>, 
+all positions in the margin group are expected to be liquidated. </p>
 <h3 id='position-initial-maintenance-margin-rate'>Position Initial/Maintenance Margin Rate</h3>
 <p>Initial/Maintenance Margin Rate is system-specified for each position bracket and each contract. You may refer to the <code>marginRequirements</code> 
 section from the <a href="#futures-contracts-info">Futures Contract Info</a> endpoint for position brackets.</p>
@@ -713,7 +749,7 @@ maintenance margin rate.</p>
 
 <ul>
 <li>Position Initial Margin = sum(CPN * Initial Margin Rate) for each contract in the crossed group</li>
-<li>Position Maintenance Margin = sum(CPN * Maintenance Margin) Rate for each contract in the crossed group</li>
+<li>Position Maintenance Margin = sum(CPN * Maintenance Margin Rate) for each contract in the crossed group</li>
 </ul>
 <h3 id='liquidation-price'>Liquidation Price</h3>
 <ul>
@@ -735,6 +771,36 @@ maintenance margin rate.</p>
 <li>R = abs(position size) * (1 + maintenance margin rate)</li>
 <li>Liquidation Price = mark price + V / R</li>
 </ul>
+<h3 id='unrealized-pnl'>Unrealized PnL</h3>
+<p>The <strong>Unrealized PnL</strong> of a position is calculated as:</p>
+
+<ul>
+<li>Unrealized PnL = mark price * position + reference cost</li>
+</ul>
+
+<p>Note that <strong>position</strong> and <strong>reference cost</strong> are of opposite signs.</p>
+
+<p>The <strong>Unrealized PnL</strong> will be rolled (settled) when:</p>
+
+<ul>
+<li>position is closed or flipped side (long becomes short, vice versa)</li>
+<li>every 15 minutes AND abs(Unrealized Pnl) &gt;= 10 USDT</li>
+</ul>
+
+<p>Assume your current position is P, the current reference cost if RC, and unrealized PnL is L, after rolling:</p>
+
+<ul>
+<li>position = P</li>
+<li>reference cost = RC + L</li>
+<li>realized PnL = 0 </li>
+</ul>
+
+<p>You should always include the unrealized PnL when calculating the collateral balance. </p>
+<h3 id='realized-pnl'>Realized PnL</h3>
+<p><strong>Realized Pnl</strong> is merely a bookkeeping entry for all profits and losses realized by the current position under 
+the assumption that the position was built on an average cost basis. </p>
+
+<p>If you are mostly concerned about the risk of your positions, you can ignore the realized PnL. </p>
 <h1 id='restful-apis'>RESTful APIs</h1><h2 id='general-info-public'>General Info (Public)</h2><h3 id='futures-contracts-info'>Futures Contracts Info</h3>
 <blockquote>
 <p>Response - Futures Contracts Info</p>
@@ -1096,7 +1162,7 @@ The <code>timestamp</code> is the UTC timestamp in milliseconds. The <code>api-p
                 </span><span class="nl">"symbol"</span><span class="w">               </span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">contract</span><span class="w"> </span><span class="err">symbol</span><span class="w">
                 </span><span class="nl">"side"</span><span class="w">                 </span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">         </span><span class="err">//</span><span class="w"> </span><span class="err">side</span><span class="w">
                 </span><span class="nl">"position"</span><span class="w">             </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.5"</span><span class="p">,</span><span class="w">          </span><span class="err">//</span><span class="w"> </span><span class="err">positive</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">long</span><span class="w"> </span><span class="err">position</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">negative</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">short</span><span class="w"> </span><span class="err">position</span><span class="w">
-                </span><span class="nl">"referenceCost"</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="s2">"16800"</span><span class="p">,</span><span class="w">        </span><span class="err">//</span><span class="w"> </span><span class="err">reference</span><span class="w"> </span><span class="err">cost</span><span class="w">
+                </span><span class="nl">"referenceCost"</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="s2">"-16800"</span><span class="p">,</span><span class="w">       </span><span class="err">//</span><span class="w"> </span><span class="err">reference</span><span class="w"> </span><span class="err">cost</span><span class="w">
                 </span><span class="nl">"unrealizedPnl"</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">            </span><span class="err">//</span><span class="w"> </span><span class="err">unrealized</span><span class="w"> </span><span class="err">pnl</span><span class="w"> 
                 </span><span class="nl">"realizedPnl"</span><span class="w">          </span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">            </span><span class="err">//</span><span class="w"> </span><span class="err">realized</span><span class="w"> </span><span class="err">pnl</span><span class="w">
                 </span><span class="nl">"avgOpenPrice"</span><span class="w">         </span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">            </span><span class="err">//</span><span class="w"> </span><span class="err">Average</span><span class="w"> </span><span class="err">Opening</span><span class="w"> </span><span class="err">Price</span><span class="w">
