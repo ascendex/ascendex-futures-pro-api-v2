@@ -42,7 +42,7 @@ module Rouge
               Comment,                          :fg => :dimgrey
         style Error,
               Generic::Error,
-              Generic::Traceback,               :fg => :carmine
+              Generic::Traceback,               :fg => :grey
         style Generic::Deleted,
               Generic::Inserted,
               Generic::Emph,                    :fg => :dark
