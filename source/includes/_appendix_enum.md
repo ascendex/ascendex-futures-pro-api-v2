@@ -59,6 +59,17 @@
 * `PosStopMark`
 * `PosStopRef`
 
+### Order Status (`status`)
+
+* `New`
+* `PartiallyFilled`
+* `Filled`
+* `Canceled`
+* `Rejected`
+* `CancelPending`
+* `PendingNew`
+
+
 ### Margin Type (`marginType`)
 
 * `crossed`
