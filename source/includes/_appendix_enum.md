@@ -66,8 +66,7 @@
 * `Filled`
 * `Canceled`
 * `Rejected`
-* `CancelPending`
-* `PendingNew`
+* `PendingNew` - a conditional order (stop limit / stop market) that hasn't been triggered yet.
 
 
 ### Margin Type (`marginType`)
