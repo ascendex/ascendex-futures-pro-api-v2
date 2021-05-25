@@ -36,7 +36,7 @@ SIGNATURE=`echo -n $MESSAGE | openssl dgst -sha256 -hmac $SECRET -binary | base6
 wscat -H "x-auth-key: $APIKEY" \
   -H "x-auth-signature: $SIGNATURE" \
   -H "x-auth-timestamp: $TIMESTAMP" \
-  -c wss://api-test.ascendex-sandbox.io:443/api/pro/v2/stream -w 1 -x '{"op":"sub", "id": "abc123", "ch": "order:cshQtyfq8XLAA9kcf19h8bXHbAwwoqDo:BTMX/USDT"}'
+  -c wss://api-test.ascendex-sandbox.io:443/api/pro/v2/stream -w 1 -x '{"op":"sub", "id": "abc123", "ch": "order:cshQtyfq8XLAA9kcf19h8bXHbAwwoqDo:ASD/USDT"}'
 ```
 
 This is similar to the way you authenticate any RESTful request. You need to add the following header fields to the 
