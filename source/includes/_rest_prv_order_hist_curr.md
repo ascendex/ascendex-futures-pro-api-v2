@@ -36,7 +36,7 @@
          "posStopLossTrigger":"market",
          "posTakeProfitPrice":"0",
          "posTakeProfitTrigger":"market",
-         "price":"59027",
+         "orderPrice":"59027",
          "seqNum":1041950,
          "side":"Buy",
          "status":"Filled",
