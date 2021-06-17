@@ -36,7 +36,7 @@ SIGNATURE=`echo -n $MESSAGE | openssl dgst -sha256 -hmac $SECRET -binary | base6
 wscat -H "x-auth-key: $APIKEY" \
   -H "x-auth-signature: $SIGNATURE" \
   -H "x-auth-timestamp: $TIMESTAMP" \
-  -c wss://api-test.ascendex-sandbox.io:443/api/pro/v2/stream -w 1 -x '{"op":"sub", "id": "abc123", "ch": "order:cshQtyfq8XLAA9kcf19h8bXHbAwwoqDo:ASD/USDT"}'
+  -c wss://api-test.ascendex-sandbox.com:443/api/pro/v2/stream -w 1 -x '{"op":"sub", "id": "abc123", "ch": "order:cshQtyfq8XLAA9kcf19h8bXHbAwwoqDo:ASD/USDT"}'
 ```
 
 This is similar to the way you authenticate any RESTful request. You need to add the following header fields to the 
@@ -66,7 +66,7 @@ TIMESTAMP=`date +%s%N | cut -c -13`
 MESSAGE=$TIMESTAMP+$APIPATH
 SIGNATURE=`echo -n $MESSAGE | openssl dgst -sha256 -hmac $SECRET -binary | base64`
 
-wscat -c wss://api-test.ascendex-sandbox.io:443/1/api/pro/v2/stream -w 1 -x "{\"op\":\"auth\", \"id\": \"abc123\", \"t\": $TIMESTAMP, "key": \"$APIKEY\", \"sig\": \"$SIGNATURE\"}"
+wscat -c wss://api-test.ascendex-sandbox.com:443/1/api/pro/v2/stream -w 1 -x "{\"op\":\"auth\", \"id\": \"abc123\", \"t\": $TIMESTAMP, "key": \"$APIKEY\", \"sig\": \"$SIGNATURE\"}"
 ```
 
 You can also authenticate a live websocket session by sending an `op:auth` message to the server. 
