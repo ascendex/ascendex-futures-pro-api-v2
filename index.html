@@ -338,6 +338,9 @@
                   <li>
                     <a href="#demo-code" class="toc-h2 toc-link" data-title="Demo Code">Demo Code</a>
                   </li>
+                  <li>
+                    <a href="#market-making-incentive-program" class="toc-h2 toc-link" data-title="Market Making Incentive Program">Market Making Incentive Program</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -690,6 +693,21 @@
 </ul>
 <h2 id='demo-code'>Demo Code</h2>
 <p>Python Demo: <a href="https://github.com/ascendex/ascendex-futures-api-demo-v2"><em>https://github.com/ascendex/ascendex-futures-api-demo-v2</em></a></p>
+<h2 id='market-making-incentive-program'>Market Making Incentive Program</h2>
+<p>AscendEX offers a Market Making Incentive Program for professional liquidity providers. Key benefits of this program include:</p>
+
+<ul>
+<li>Favorable fee structure.</li>
+<li>Monthly bonus pending satisfying KPI.</li>
+<li>Direct Market Access and Co-location service.</li>
+</ul>
+
+<p>Users with good maker strategies and significant trading volume are welcome to participate in this long-term program. If your account has a trading volume of more than 150,000,000 USDT in the last 30 days on any exchange, please send the following information via email to institution@ascendex.com, with the subject &quot;Market Maker Incentive Application&quot;:</p>
+
+<ul>
+<li>One AscendEX account ID.</li>
+<li>A brief explanation of your market making method (NO detail is needed), as well as estimation of maker orders&#39; percentage.</li>
+</ul>
 <h1 id='general-info'>General Info</h1><h2 id='futures-trading-system-specification'>Futures Trading System Specification</h2><h3 id='contract-position-notional-cpn'>Contract Position Notional (CPN)</h3>
 <ul>
 <li>CPN = abs(position size * mark price) for the contract </li>
@@ -2206,8 +2224,8 @@ In which case, your USDT balance will become negative after the operation. </p>
 <li><p>Testnet: </p>
 
 <ul>
-<li>Public endpoint: <code>wss://api-test.ascendex-sandbox.io:443/api/pro/v2/stream</code></li>
-<li>Private endpoint: <code>wss://api-test.ascendex-sandbox.io:443/&lt;grp&gt;/api/pro/v2/stream</code></li>
+<li>Public endpoint: <code>wss://api-test.ascendex-sandbox.com:443/api/pro/v2/stream</code></li>
+<li>Private endpoint: <code>wss://api-test.ascendex-sandbox.com:443/&lt;grp&gt;/api/pro/v2/stream</code></li>
 </ul></li>
 <li><p>Mainnet:</p>
 
@@ -2259,7 +2277,7 @@ You can only authenticate a WebSocket session via a private endpoint.</li>
 wscat <span class="nt">-H</span> <span class="s2">"x-auth-key: </span><span class="nv">$APIKEY</span><span class="s2">"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"x-auth-signature: </span><span class="nv">$SIGNATURE</span><span class="s2">"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"x-auth-timestamp: </span><span class="nv">$TIMESTAMP</span><span class="s2">"</span> <span class="se">\</span>
-  <span class="nt">-c</span> wss://api-test.ascendex-sandbox.io:443/api/pro/v2/stream <span class="nt">-w</span> 1 <span class="nt">-x</span> <span class="s1">'{"op":"sub", "id": "abc123", "ch": "order:cshQtyfq8XLAA9kcf19h8bXHbAwwoqDo:ASD/USDT"}'</span>
+  <span class="nt">-c</span> wss://api-test.ascendex-sandbox.com:443/api/pro/v2/stream <span class="nt">-w</span> 1 <span class="nt">-x</span> <span class="s1">'{"op":"sub", "id": "abc123", "ch": "order:cshQtyfq8XLAA9kcf19h8bXHbAwwoqDo:ASD/USDT"}'</span>
 </code></pre></div>
 <p>This is similar to the way you authenticate any RESTful request. You need to add the following header fields to the 
 connection request:</p>
@@ -2289,7 +2307,7 @@ connection request:</p>
 <span class="nv">MESSAGE</span><span class="o">=</span><span class="nv">$TIMESTAMP</span>+<span class="nv">$APIPATH</span>
 <span class="nv">SIGNATURE</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nt">-n</span> <span class="nv">$MESSAGE</span> | openssl dgst <span class="nt">-sha256</span> <span class="nt">-hmac</span> <span class="nv">$SECRET</span> <span class="nt">-binary</span> | <span class="nb">base64</span><span class="sb">`</span>
 
-wscat <span class="nt">-c</span> wss://api-test.ascendex-sandbox.io:443/1/api/pro/v2/stream <span class="nt">-w</span> 1 <span class="nt">-x</span> <span class="s2">"{</span><span class="se">\"</span><span class="s2">op</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">auth</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">abc123</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">t</span><span class="se">\"</span><span class="s2">: </span><span class="nv">$TIMESTAMP</span><span class="s2">, "</span>key<span class="s2">": </span><span class="se">\"</span><span class="nv">$APIKEY</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">sig</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$SIGNATURE</span><span class="se">\"</span><span class="s2">}"</span>
+wscat <span class="nt">-c</span> wss://api-test.ascendex-sandbox.com:443/1/api/pro/v2/stream <span class="nt">-w</span> 1 <span class="nt">-x</span> <span class="s2">"{</span><span class="se">\"</span><span class="s2">op</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">auth</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">abc123</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">t</span><span class="se">\"</span><span class="s2">: </span><span class="nv">$TIMESTAMP</span><span class="s2">, "</span>key<span class="s2">": </span><span class="se">\"</span><span class="nv">$APIKEY</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">sig</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="nv">$SIGNATURE</span><span class="se">\"</span><span class="s2">}"</span>
 </code></pre></div>
 <p>You can also authenticate a live websocket session by sending an <code>op:auth</code> message to the server. </p>
 
