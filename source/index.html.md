@@ -125,11 +125,11 @@ code_clipboard: true
 
 ## Mainnet
 
-URL: [*https://ascendex.com*](https://ascendex.com/)
+URL: [https://ascendex.com](https://ascendex.com/)
 
 ## Testnet 
 
-Testnet URL: [*https://api-test.ascendex-sandbox.io*](https://api-test.ascendex-sandbox.io/)
+Testnet URL: [https://api-test.ascendex-sandbox.io](https://api-test.ascendex-sandbox.io/)
 
 You are free to register one or more accounts in the testnet. You can use the magic code **888888** to bypass all verification code checks 
 (email verification, phone number verification, two-step authentication, etc.).
@@ -156,9 +156,17 @@ Please remember below information after creation:
 - **Secret Key** is used to generate the signature (only visible once after creation)
 - The API Key can bind maximum 20 IP addresses (either host IP or network IP), we strongly suggest you bind IP address for security purpose. The API Key without IP binding will be expired after 90 days.
 
-## Demo Code
 
-Python Demo: [*https://github.com/ascendex/ascendex-futures-api-demo-v2*](https://github.com/ascendex/ascendex-futures-api-demo-v2)
+
+## SDKs and Client Libraries
+
+### Official SDK
+
+**CCXT** is our authorized SDK provider and you may access the AscendEX API through CCXT. For more information, please visit: https://ccxt.trade.
+
+### Demo Code
+
+Python Demo: [https://github.com/ascendex/ascendex-futures-api-demo-v2](https://github.com/ascendex/ascendex-futures-api-demo-v2)
 
 
 ## Market Making Incentive Program
