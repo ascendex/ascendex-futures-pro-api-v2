@@ -162,7 +162,7 @@ Please remember below information after creation:
 
 ### Official SDK
 
-**CCXT** is our authorized SDK provider and you may access the AscendEX API through CCXT. For more information, please visit: https://ccxt.trade.
+**CCXT** is our authorized SDK provider and you may access the AscendEX API through CCXT. For more information, please visit: [https://ccxt.trade](https://ccxt.trade)
 
 ### Demo Code
 
