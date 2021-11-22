@@ -16,6 +16,7 @@ includes:
   - rest_pub_general_futures_products
   - rest_pub_mkt
   - rest_pub_mkt_futures_pricing_data
+  - rest_pub_ticker
   - rest_prv_auth
   - rest_prv_account
   - rest_prv_account_info
