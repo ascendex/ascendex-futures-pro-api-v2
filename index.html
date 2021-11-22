@@ -428,6 +428,12 @@
                             <a href="#account-info" class="toc-h3 toc-link" data-title="Account Info">Account Info</a>
                           </li>
                           <li>
+                            <a href="#vip-fee-schedule" class="toc-h3 toc-link" data-title="VIP Fee Schedule">VIP Fee Schedule</a>
+                          </li>
+                          <li>
+                            <a href="#fee-schedule-by-symbol" class="toc-h3 toc-link" data-title="Fee Schedule by Symbol">Fee Schedule by Symbol</a>
+                          </li>
+                          <li>
                             <a href="#position" class="toc-h3 toc-link" data-title="Position">Position</a>
                           </li>
                           <li>
@@ -598,6 +604,13 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introducing-futures-pro-v2-apis'>Introducing Futures Pro (v2) APIs</h1><h2 id='change-log'>Change Log</h2>
+<p><strong>2021-11-22</strong></p>
+
+<ul>
+<li>Added the <a href="#ticker">ticker API</a> for futures contracts.</li>
+<li>Added the <a href="#vip-fee-schedule">VIP fee schedule API</a> and the <a href="#fee-schedule-by-symbol">Fee Schedule by Symbol API</a>.</li>
+</ul>
+
 <p><strong>2021-03-18</strong>  </p>
 
 <ul>
@@ -1163,6 +1176,92 @@ The <code>timestamp</code> is the UTC timestamp in milliseconds. The <code>api-p
 </tbody></table>
 
 <p>See a demo at <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_prv_account_info.py">query private account info</a>.</p>
+<h3 id='vip-fee-schedule'>VIP Fee Schedule</h3>
+<blockquote>
+<p>Fee Schedule - Sample response for general info::</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futures"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"userUID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"U0866943712"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"vipLevel"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"genericFee"</span><span class="p">:</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"largeCap"</span><span class="p">:</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"maker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00085</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"taker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00085</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"smallCap"</span><span class="p">:</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"maker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"taker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><strong>HTTP Request</strong> </p>
+
+<p><code>GET &lt;account-group&gt;/api/pro/v1/futures/fee/info</code></p>
+
+<p><strong>Signature</strong></p>
+
+<p>You should sign the message in header as specified in <a href="#sign-a-request"><strong>Authenticate a RESTful Request</strong></a> section.</p>
+
+<p><strong>prehash string</strong> </p>
+
+<p><code>&lt;timestamp&gt;+fee/info</code></p>
+
+<p>See a demo at <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_fee.py">query fee</a>.</p>
+<h3 id='fee-schedule-by-symbol'>Fee Schedule by Symbol</h3>
+<blockquote>
+<p>Fee Schedule - Sample response for each symbol::</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"futures"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"userUID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"U0866943712"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"vipLevel"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"productFee"</span><span class="p">:</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"fee"</span><span class="p">:</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"maker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"taker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"fee"</span><span class="p">:</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"maker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"taker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0001</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH-PERP"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><strong>HTTP Request</strong> </p>
+
+<p><code>GET &lt;account-group&gt;/api/pro/v1/futures/fee</code></p>
+
+<p><strong>Signature</strong></p>
+
+<p>You should sign the message in header as specified in <a href="#sign-a-request"><strong>Authenticate a RESTful Request</strong></a> section.</p>
+
+<p><strong>prehash string</strong> </p>
+
+<p><code>&lt;timestamp&gt;+fee</code></p>
+
+<p>See a demo at <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_fee.py">query fee</a>.</p>
 <h3 id='position'>Position</h3>
 <blockquote>
 <p>Response</p>
