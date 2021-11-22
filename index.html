@@ -408,6 +408,9 @@
                           <li>
                             <a href="#futures-pricing-data" class="toc-h3 toc-link" data-title="Futures Pricing Data">Futures Pricing Data</a>
                           </li>
+                          <li>
+                            <a href="#ticker" class="toc-h3 toc-link" data-title="Ticker">Ticker</a>
+                          </li>
                       </ul>
                   </li>
                   <li>
@@ -991,6 +994,148 @@ the assumption that the position was built on an average cost basis. </p>
 <p><strong>HTTP Request</strong></p>
 
 <p><code>GET /api/pro/v2/futures/pricing-data</code></p>
+<h3 id='ticker'>Ticker</h3>
+<blockquote>
+<p>Ticker for one trading pair</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">curl</span><span class="w"> </span><span class="err">-X</span><span class="w"> </span><span class="err">GET</span><span class="w"> </span><span class="err">'https://ascendex.com/api/pro/v</span><span class="mi">2</span><span class="err">/futures/ticker?symbol=BTC-PERP'</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w">  </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"open"</span><span class="p">:</span><span class="w">    </span><span class="s2">"59488"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"close"</span><span class="p">:</span><span class="w">   </span><span class="s2">"56725"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"high"</span><span class="p">:</span><span class="w">    </span><span class="s2">"59724"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"low"</span><span class="p">:</span><span class="w">     </span><span class="s2">"56672"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseVol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"208.7414"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ask"</span><span class="p">:</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"56730"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"0.0005"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"bid"</span><span class="p">:</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"56710"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"0.0042"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>List of Tickers for one or multiple trading pairs</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">curl</span><span class="w"> </span><span class="err">-X</span><span class="w"> </span><span class="err">GET</span><span class="w"> </span><span class="s2">"https://ascendex.com/api/pro/v2/futures/ticker?symbol=BTC-PERP,"</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w">  </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"open"</span><span class="p">:</span><span class="w">    </span><span class="s2">"59488"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"close"</span><span class="p">:</span><span class="w">   </span><span class="s2">"56716"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"high"</span><span class="p">:</span><span class="w">    </span><span class="s2">"59724"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"low"</span><span class="p">:</span><span class="w">     </span><span class="s2">"56672"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"baseVol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"208.7414"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"ask"</span><span class="p">:</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"56720"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"0.2315"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"bid"</span><span class="p">:</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"56712"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"0.0024"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h4 id='http-request'>HTTP Request</h4>
+<p><code>GET api/pro/v2/futures/ticker</code></p>
+
+<p>You can get summary statistics of one or multiple symbols (spot market) with this API. </p>
+<h4 id='request-parameters'>Request Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Value Range</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>symbol</code></td>
+<td><code>String</code></td>
+<td>No</td>
+<td></td>
+<td>you may specify one, multiple, or all symbols of interest. See below.</td>
+</tr>
+</tbody></table>
+
+<p>This API endpoint accepts one optional string field <code>symbol</code>: </p>
+
+<ul>
+<li>If you do not specify <code>symbol</code>, the API will responde with tickers of all symbols in a list. </li>
+<li>If you set <code>symbol</code> to be a single symbol, such as <code>ASD/USDT</code>, the API will respond with the ticker of the target symbol as an object. 
+If you want to wrap the object in a one-element list, append a comma to the symbol, e.g. <code>ASD/USDT,</code>.</li>
+<li>You shall specify <code>symbol</code> as a comma separated symbol list, e.g. <code>ASD/USDT,BTC/USDT</code>. The API will respond with a list of tickers. </li>
+</ul>
+<h4 id='respond-content'>Respond Content</h4>
+<p>The API will respond with a ticker object or a list of ticker objects, depending on how you set the <code>symbol</code> parameter. </p>
+
+<p>Each ticker object contains the following fields:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>symbol</code></td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>open</code></td>
+<td><code>String</code></td>
+<td>the traded price 24 hour ago</td>
+</tr>
+<tr>
+<td><code>close</code></td>
+<td><code>String</code></td>
+<td>the last traded price</td>
+</tr>
+<tr>
+<td><code>high</code></td>
+<td><code>String</code></td>
+<td>the highest price over the past 24 hours</td>
+</tr>
+<tr>
+<td><code>low</code></td>
+<td><code>String</code></td>
+<td>the lowest price over the past 24 hours</td>
+</tr>
+<tr>
+<td><code>volume</code></td>
+<td><code>String</code></td>
+<td>the total traded volume in quote asset over the paste 24 hours</td>
+</tr>
+<tr>
+<td><code>ask</code></td>
+<td><code>[String, String]</code></td>
+<td>the price and size at the current best ask level</td>
+</tr>
+<tr>
+<td><code>bid</code></td>
+<td><code>[String, String]</code></td>
+<td>the price and size at the current best bid level</td>
+</tr>
+</tbody></table>
+<h4 id='code-sample'>Code Sample</h4>
+<p>Please refer to python code to [query ticker info]{https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_pub_ticker.py}</p>
 <h2 id='authenticate-a-restful-request'>Authenticate a RESTful Request</h2><h3 id='create-request'>Create Request</h3>
 <p>To access private data via RESTful APIs, you must include the following headers:</p>
 
