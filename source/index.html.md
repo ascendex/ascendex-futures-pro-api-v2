@@ -19,6 +19,7 @@ includes:
   - rest_prv_auth
   - rest_prv_account
   - rest_prv_account_info
+  - rest_prv_account_fee
   - rest_prv_account_position
   - rest_prv_free_margin
   - rest_prv_account_change_margin
@@ -69,6 +70,11 @@ code_clipboard: true
 # Introducing Futures Pro (v2) APIs
 
 ## Change Log
+
+**2021-11-22**
+
+* Added the [ticker API](#ticker) for futures contracts.
+* Added the [VIP fee schedule API](#vip-fee-schedule) and the [Fee Schedule by Symbol API](#fee-schedule-by-symbol).
 
 **2021-03-18**  
 
