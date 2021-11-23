@@ -14,13 +14,13 @@
         {
             "largeCap":
             {
-                "maker": 0.00085,
-                "taker": 0.00085
+                "maker": "0.00085",
+                "taker": "0.00085"
             },
             "smallCap":
             {
-                "maker": 0.001,
-                "taker": 0.001
+                "maker": "0.001",
+                "taker": "0.001"
             }
         }
     }
@@ -59,16 +59,16 @@ See a demo at [query fee](https://github.com/ascendex/ascendex-pro-api-demo/blob
             {
                 "fee":
                 {
-                    "maker": 0.0001,
-                    "taker": 0.0001
+                    "maker": "0.0001",
+                    "taker": "0.0001"
                 },
                 "symbol": "BTC-PERP"
             },
             {
                 "fee":
                 {
-                    "maker": 0.0001,
-                    "taker": 0.0001
+                    "maker": "0.0001",
+                    "taker": "0.0001"
                 },
                 "symbol": "ETH-PERP"
             }
