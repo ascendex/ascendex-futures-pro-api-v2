@@ -71,66 +71,6 @@ code_clipboard: true
 
 # Introducing Futures Pro (v2) APIs
 
-## Change Log
-
-**2021-11-22**
-
-* Added the [ticker API](#ticker) for futures contracts.
-* Added the [VIP fee schedule API](#vip-fee-schedule) and the [Fee Schedule by Symbol API](#fee-schedule-by-symbol).
-
-**2021-03-18**  
-
-* Added WebSocket [*Query Open Orders*](#ws-query-open-orders) API.
-
-**2021-03-03**
-
-* Fixed bug of cancelling a filled order with empty fields error response.
-* Added *symbol* to error response from WebSocket [*Place Order*](#ws-place-order).
-* Updated *nextFundingTime* value in RESTful [*Futures Pricing Data*](#futures-pricing-data) response.
-* Updated nextFundingTime *f* value in WebSocket [*Futures Pricing Data*](#channel-futures-pricing-data) message.
-* Added error response demo in [*Place New Order*](#new-order).
-* Added error response demo in [*Place Batch Orders*](#place-batch-orders).
-* Fixed bug in [*Cancel All Open Orders*](#cancel-all-open-orders) when no data is passed in request body.
-* Fixed bug of *URL Not Found* in [*Account Info*](#account-info).
-* Added *openInterest* in [*Futures Pricing Data*](#futures-pricing-data)
-* Added *oi* (open interest) in [*Channel: Futures Pricing Data*](#channel-futures-pricing-data)
-
-**2021-02-26**  
-
-* Updated *respInst* field requirement in [*Place Batch Orders*](#place-batch-orders).
-* Updated *respInst* field explanation in [*Place New Order*](#new-order).
-
-**2021-02-25**
-
-* Updated *id* field requirement in WebSocket [*Place Order*](#ws-place-order) request.
-
-**2021-02-23**
-
-* Removed collapseDecimals field from [*Futures Contracts Info*](#futures-contracts-info) response.
-
-**2021-02-22**
-
-* Added RESTful [*Current Order History*](#list-current-history-orders) API.
-
-**2021-02-21**
-
-* Added [*Order Id Generate Algorithm*](#generate-order-id).
-* Added RESTful [*Place Batch Orders*](#place-batch-orders) API.
-* Added RESTful [*Cancel Batch Orders*](#cancel-batch-orders) API.
-* Added RESTful [*Query Order By ID*](#query-order-by-id) API.
-
-**2021-02-19**
-
-* Added WebSocket [*Account Snapshot*](#ws-account-snapshot) API.
-* Added WebSocket [*Place Order*](#ws-place-order) API.
-* Added WebSocket [*Cancel Order*](#ws-cancel-order) API.
-* Added WebSocket [*Cancel All Orders*](#ws-cancel-all-orders) API.
-
-**2021-02-18**
-
-* Replaced `baseAsset` and `quoteAsset` with `settlementAsset` in [*Futures Contract Info*](#futures-contracts-info) response.
-* Updated [*Account Info*](#account-info) API path.
-
 ## Mainnet
 
 URL: [https://ascendex.com](https://ascendex.com/)
@@ -190,3 +130,66 @@ Users with good maker strategies and significant trading volume are welcome to p
 * One AscendEX account ID.
 * A brief explanation of your market making method (NO detail is needed), as well as estimation of maker orders' percentage.
 
+## Got Questions?
+
+Join our official telegram channel: [https://t.me/AscendEX_Official_API](https://t.me/AscendEX_Official_API)
+
+## Change Log
+
+**2021-11-22**
+
+* Added the [ticker API](#ticker) for futures contracts.
+* Added the [VIP fee schedule API](#vip-fee-schedule) and the [Fee Schedule by Symbol API](#fee-schedule-by-symbol).
+
+**2021-03-18**  
+
+* Added WebSocket [*Query Open Orders*](#ws-query-open-orders) API.
+
+**2021-03-03**
+
+* Fixed bug of cancelling a filled order with empty fields error response.
+* Added *symbol* to error response from WebSocket [*Place Order*](#ws-place-order).
+* Updated *nextFundingTime* value in RESTful [*Futures Pricing Data*](#futures-pricing-data) response.
+* Updated nextFundingTime *f* value in WebSocket [*Futures Pricing Data*](#channel-futures-pricing-data) message.
+* Added error response demo in [*Place New Order*](#new-order).
+* Added error response demo in [*Place Batch Orders*](#place-batch-orders).
+* Fixed bug in [*Cancel All Open Orders*](#cancel-all-open-orders) when no data is passed in request body.
+* Fixed bug of *URL Not Found* in [*Account Info*](#account-info).
+* Added *openInterest* in [*Futures Pricing Data*](#futures-pricing-data)
+* Added *oi* (open interest) in [*Channel: Futures Pricing Data*](#channel-futures-pricing-data)
+
+**2021-02-26**  
+
+* Updated *respInst* field requirement in [*Place Batch Orders*](#place-batch-orders).
+* Updated *respInst* field explanation in [*Place New Order*](#new-order).
+
+**2021-02-25**
+
+* Updated *id* field requirement in WebSocket [*Place Order*](#ws-place-order) request.
+
+**2021-02-23**
+
+* Removed collapseDecimals field from [*Futures Contracts Info*](#futures-contracts-info) response.
+
+**2021-02-22**
+
+* Added RESTful [*Current Order History*](#list-current-history-orders) API.
+
+**2021-02-21**
+
+* Added [*Order Id Generate Algorithm*](#generate-order-id).
+* Added RESTful [*Place Batch Orders*](#place-batch-orders) API.
+* Added RESTful [*Cancel Batch Orders*](#cancel-batch-orders) API.
+* Added RESTful [*Query Order By ID*](#query-order-by-id) API.
+
+**2021-02-19**
+
+* Added WebSocket [*Account Snapshot*](#ws-account-snapshot) API.
+* Added WebSocket [*Place Order*](#ws-place-order) API.
+* Added WebSocket [*Cancel Order*](#ws-cancel-order) API.
+* Added WebSocket [*Cancel All Orders*](#ws-cancel-all-orders) API.
+
+**2021-02-18**
+
+* Replaced `baseAsset` and `quoteAsset` with `settlementAsset` in [*Futures Contract Info*](#futures-contracts-info) response.
+* Updated [*Account Info*](#account-info) API path.
