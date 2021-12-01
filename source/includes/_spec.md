@@ -1,7 +1,4 @@
-# General Info
-
-
-## Futures Trading System Specification
+# Futures Trading System Specification
 
 
 ### Contract Position Notional (CPN)

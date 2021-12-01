@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: AscendEX Futures API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -71,11 +71,12 @@ code_clipboard: true
 
 # Introducing Futures Pro (v2) APIs
 
-## Mainnet
+## General
 
+**Mainnet**
 URL: [https://ascendex.com](https://ascendex.com/)
 
-## Testnet 
+**Testnet**
 
 Testnet URL: [https://api-test.ascendex-sandbox.io](https://api-test.ascendex-sandbox.io/)
 
@@ -108,11 +109,12 @@ Please remember below information after creation:
 
 ## SDKs and Client Libraries
 
-### Official SDK
+**Official SDK**
 
 **CCXT** is our authorized SDK provider and you may access the AscendEX API through CCXT. For more information, please visit: [https://ccxt.trade](https://ccxt.trade)
 
-### Demo Code
+
+**Demo Code**
 
 Python Demo: [https://github.com/ascendex/ascendex-futures-api-demo-v2](https://github.com/ascendex/ascendex-futures-api-demo-v2)
 
