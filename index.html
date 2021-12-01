@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>AscendEX Futures API Reference</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -324,24 +324,13 @@
             <a href="#introducing-futures-pro-v2-apis" class="toc-h1 toc-link" data-title="Introducing Futures Pro (v2) APIs">Introducing Futures Pro (v2) APIs</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#mainnet" class="toc-h2 toc-link" data-title="Mainnet">Mainnet</a>
-                  </li>
-                  <li>
-                    <a href="#testnet" class="toc-h2 toc-link" data-title="Testnet">Testnet</a>
+                    <a href="#general" class="toc-h2 toc-link" data-title="General">General</a>
                   </li>
                   <li>
                     <a href="#obtain-api-keys" class="toc-h2 toc-link" data-title="Obtain API Keys">Obtain API Keys</a>
                   </li>
                   <li>
                     <a href="#sdks-and-client-libraries" class="toc-h2 toc-link" data-title="SDKs and Client Libraries">SDKs and Client Libraries</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#official-sdk" class="toc-h3 toc-link" data-title="Official SDK">Official SDK</a>
-                          </li>
-                          <li>
-                            <a href="#demo-code" class="toc-h3 toc-link" data-title="Demo Code">Demo Code</a>
-                          </li>
-                      </ul>
                   </li>
                   <li>
                     <a href="#market-making-incentive-program" class="toc-h2 toc-link" data-title="Market Making Incentive Program">Market Making Incentive Program</a>
@@ -355,39 +344,34 @@
               </ul>
           </li>
           <li>
-            <a href="#general-info" class="toc-h1 toc-link" data-title="General Info">General Info</a>
+            <a href="#futures-trading-system-specification" class="toc-h1 toc-link" data-title="Futures Trading System Specification">Futures Trading System Specification</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#futures-trading-system-specification" class="toc-h2 toc-link" data-title="Futures Trading System Specification">Futures Trading System Specification</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#contract-position-notional-cpn" class="toc-h3 toc-link" data-title="Contract Position Notional (CPN)">Contract Position Notional (CPN)</a>
-                          </li>
-                          <li>
-                            <a href="#margin-group" class="toc-h3 toc-link" data-title="Margin Group">Margin Group</a>
-                          </li>
-                          <li>
-                            <a href="#total-margin" class="toc-h3 toc-link" data-title="Total Margin">Total Margin</a>
-                          </li>
-                          <li>
-                            <a href="#group-collateral-balance" class="toc-h3 toc-link" data-title="Group Collateral Balance">Group Collateral Balance</a>
-                          </li>
-                          <li>
-                            <a href="#position-initial-maintenance-margin-rate" class="toc-h3 toc-link" data-title="Position Initial/Maintenance Margin Rate">Position Initial/Maintenance Margin Rate</a>
-                          </li>
-                          <li>
-                            <a href="#position-initial-maintenance-margin" class="toc-h3 toc-link" data-title="Position Initial/Maintenance Margin">Position Initial/Maintenance Margin</a>
-                          </li>
-                          <li>
-                            <a href="#liquidation-price" class="toc-h3 toc-link" data-title="Liquidation Price">Liquidation Price</a>
-                          </li>
-                          <li>
-                            <a href="#unrealized-pnl" class="toc-h3 toc-link" data-title="Unrealized PnL">Unrealized PnL</a>
-                          </li>
-                          <li>
-                            <a href="#realized-pnl" class="toc-h3 toc-link" data-title="Realized PnL">Realized PnL</a>
-                          </li>
-                      </ul>
+                    <a href="#contract-position-notional-cpn" class="toc-h2 toc-link" data-title="Contract Position Notional (CPN)">Contract Position Notional (CPN)</a>
+                  </li>
+                  <li>
+                    <a href="#margin-group" class="toc-h2 toc-link" data-title="Margin Group">Margin Group</a>
+                  </li>
+                  <li>
+                    <a href="#total-margin" class="toc-h2 toc-link" data-title="Total Margin">Total Margin</a>
+                  </li>
+                  <li>
+                    <a href="#group-collateral-balance" class="toc-h2 toc-link" data-title="Group Collateral Balance">Group Collateral Balance</a>
+                  </li>
+                  <li>
+                    <a href="#position-initial-maintenance-margin-rate" class="toc-h2 toc-link" data-title="Position Initial/Maintenance Margin Rate">Position Initial/Maintenance Margin Rate</a>
+                  </li>
+                  <li>
+                    <a href="#position-initial-maintenance-margin" class="toc-h2 toc-link" data-title="Position Initial/Maintenance Margin">Position Initial/Maintenance Margin</a>
+                  </li>
+                  <li>
+                    <a href="#liquidation-price" class="toc-h2 toc-link" data-title="Liquidation Price">Liquidation Price</a>
+                  </li>
+                  <li>
+                    <a href="#unrealized-pnl" class="toc-h2 toc-link" data-title="Unrealized PnL">Unrealized PnL</a>
+                  </li>
+                  <li>
+                    <a href="#realized-pnl" class="toc-h2 toc-link" data-title="Realized PnL">Realized PnL</a>
                   </li>
               </ul>
           </li>
@@ -615,9 +599,12 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introducing-futures-pro-v2-apis'>Introducing Futures Pro (v2) APIs</h1><h2 id='mainnet'>Mainnet</h2>
-<p>URL: <a href="https://ascendex.com/">https://ascendex.com</a></p>
-<h2 id='testnet'>Testnet</h2>
+        <h1 id='introducing-futures-pro-v2-apis'>Introducing Futures Pro (v2) APIs</h1><h2 id='general'>General</h2>
+<p><strong>Mainnet</strong>
+URL: <a href="https://ascendex.com/">https://ascendex.com</a></p>
+
+<p><strong>Testnet</strong></p>
+
 <p>Testnet URL: <a href="https://api-test.ascendex-sandbox.io/">https://api-test.ascendex-sandbox.io</a></p>
 
 <p>You are free to register one or more accounts in the testnet. You can use the magic code <strong>888888</strong> to bypass all verification code checks 
@@ -646,9 +633,13 @@
 <li><strong>Secret Key</strong> is used to generate the signature (only visible once after creation)</li>
 <li>The API Key can bind maximum 20 IP addresses (either host IP or network IP), we strongly suggest you bind IP address for security purpose. The API Key without IP binding will be expired after 90 days.</li>
 </ul>
-<h2 id='sdks-and-client-libraries'>SDKs and Client Libraries</h2><h3 id='official-sdk'>Official SDK</h3>
+<h2 id='sdks-and-client-libraries'>SDKs and Client Libraries</h2>
+<p><strong>Official SDK</strong></p>
+
 <p><strong>CCXT</strong> is our authorized SDK provider and you may access the AscendEX API through CCXT. For more information, please visit: <a href="https://ccxt.trade">https://ccxt.trade</a></p>
-<h3 id='demo-code'>Demo Code</h3>
+
+<p><strong>Demo Code</strong></p>
+
 <p>Python Demo: <a href="https://github.com/ascendex/ascendex-futures-api-demo-v2">https://github.com/ascendex/ascendex-futures-api-demo-v2</a></p>
 <h2 id='market-making-incentive-program'>Market Making Incentive Program</h2>
 <p>AscendEX offers a Market Making Incentive Program for professional liquidity providers. Key benefits of this program include:</p>
@@ -745,7 +736,7 @@
 <li>Replaced <code>baseAsset</code> and <code>quoteAsset</code> with <code>settlementAsset</code> in <a href="#futures-contracts-info"><em>Futures Contract Info</em></a> response.</li>
 <li>Updated <a href="#account-info"><em>Account Info</em></a> API path.</li>
 </ul>
-<h1 id='general-info'>General Info</h1><h2 id='futures-trading-system-specification'>Futures Trading System Specification</h2><h3 id='contract-position-notional-cpn'>Contract Position Notional (CPN)</h3>
+<h1 id='futures-trading-system-specification'>Futures Trading System Specification</h1><h3 id='contract-position-notional-cpn'>Contract Position Notional (CPN)</h3>
 <ul>
 <li>CPN = abs(position size * mark price) for the contract </li>
 </ul>
