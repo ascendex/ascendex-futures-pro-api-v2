@@ -38,6 +38,7 @@ includes:
   - rest_prv_order_open
   - rest_prv_order_hist_curr
   - rest_prv_order_query_by_id
+  - rest_prv_bal_detail
   - wss
   - wss_general
   - wss_auth
@@ -137,6 +138,9 @@ Users with good maker strategies and significant trading volume are welcome to p
 Join our official telegram channel: [https://t.me/AscendEX_Official_API](https://t.me/AscendEX_Official_API)
 
 ## Change Log
+
+**2021-12-02**
+
 
 **2021-11-22**
 
