@@ -38,6 +38,7 @@ includes:
   - rest_prv_order_open
   - rest_prv_order_hist_curr
   - rest_prv_order_query_by_id
+  - rest_prv_bal_detail
   - wss
   - wss_general
   - wss_auth
@@ -72,6 +73,9 @@ code_clipboard: true
 # Introducing Futures Pro (v2) APIs
 
 ## Change Log
+
+**2021-12-02**
+
 
 **2021-11-22**
 
