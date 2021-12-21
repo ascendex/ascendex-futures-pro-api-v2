@@ -12,6 +12,7 @@ toc_footers:
 includes:
   - spec
   - rest
+  - rest_exchange_info
   - rest_pub_general
   - rest_pub_general_futures_products
   - rest_pub_mkt
