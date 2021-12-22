@@ -36,7 +36,7 @@
 
 **HTTP Request**
 
-`POST /<grp>/api/pro/v2/futures/order/open`
+`GET /<grp>/api/pro/v2/futures/order/open`
 
 **Prehash String**
 
