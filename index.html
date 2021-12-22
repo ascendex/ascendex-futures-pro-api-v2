@@ -379,6 +379,9 @@
             <a href="#restful-apis" class="toc-h1 toc-link" data-title="RESTful APIs">RESTful APIs</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#exchange-latency-info" class="toc-h2 toc-link" data-title="Exchange Latency Info">Exchange Latency Info</a>
+                  </li>
+                  <li>
                     <a href="#general-info-public" class="toc-h2 toc-link" data-title="General Info (Public)">General Info (Public)</a>
                       <ul class="toc-list-h3">
                           <li>
@@ -867,7 +870,24 @@ maintenance margin rate.</p>
 the assumption that the position was built on an average cost basis. </p>
 
 <p>If you are mostly concerned about the risk of your positions, you can ignore the realized PnL. </p>
-<h1 id='restful-apis'>RESTful APIs</h1><h2 id='general-info-public'>General Info (Public)</h2><h3 id='futures-contracts-info'>Futures Contracts Info</h3>
+<h1 id='restful-apis'>RESTful APIs</h1><h3 id='exchange-latency-info'>Exchange Latency Info</h3>
+<blockquote>
+<p>Latency Info - Sample response::</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"requestTimeEcho"</span><span class="p">:</span><span class="w"> </span><span class="mi">1640052379050</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"requestReceiveAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1640052379063</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"latency"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><strong>HTTP Request</strong> </p>
+
+<p><code>GET /api/pro/v1/exchange-info?requestTime=&quot;$(date +%s%N | cut -b1-13)&quot;</code></p>
+<h2 id='general-info-public'>General Info (Public)</h2><h3 id='futures-contracts-info'>Futures Contracts Info</h3>
 <blockquote>
 <p>Response - Futures Contracts Info</p>
 </blockquote>
@@ -2548,7 +2568,7 @@ In which case, your USDT balance will become negative after the operation. </p>
 </span></code></pre></div>
 <p><strong>HTTP Request</strong></p>
 
-<p><code>POST /&lt;grp&gt;/api/pro/v2/futures/order/open</code></p>
+<p><code>GET /&lt;grp&gt;/api/pro/v2/futures/order/open</code></p>
 
 <p><strong>Prehash String</strong></p>
 
