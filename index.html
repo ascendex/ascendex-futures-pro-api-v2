@@ -872,6 +872,11 @@ the assumption that the position was built on an average cost basis. </p>
 <p>If you are mostly concerned about the risk of your positions, you can ignore the realized PnL. </p>
 <h1 id='restful-apis'>RESTful APIs</h1><h3 id='exchange-latency-info'>Exchange Latency Info</h3>
 <blockquote>
+<p>Latency Info </p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>curl -X GET https://ascendex.com/api/pro/v1/exchange-info?requestTime="$(date +%s%N | cut -b1-13)"
+</code></pre></div>
+<blockquote>
 <p>Latency Info - Sample response::</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -886,7 +891,25 @@ the assumption that the position was built on an average cost basis. </p>
 </span></code></pre></div>
 <p><strong>HTTP Request</strong> </p>
 
-<p><code>GET /api/pro/v1/exchange-info?requestTime=&quot;$(date +%s%N | cut -b1-13)&quot;</code></p>
+<p><code>GET /api/pro/v1/exchange-info</code></p>
+<h4 id='request-parameters'>Request Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Value Range</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>requestTime</td>
+<td>Long</td>
+<td>Yes</td>
+<td>milliseconds since UNIX epoch in UTC</td>
+<td>the client&#39;s local time. The server compare it with the system time to calculate latency.</td>
+</tr>
+</tbody></table>
 <h2 id='general-info-public'>General Info (Public)</h2><h3 id='futures-contracts-info'>Futures Contracts Info</h3>
 <blockquote>
 <p>Response - Futures Contracts Info</p>
