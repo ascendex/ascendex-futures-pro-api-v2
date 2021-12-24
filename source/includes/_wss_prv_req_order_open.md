@@ -32,7 +32,7 @@
          "execInst":"NULL_VAL",
          "side":"Sell",
          "symbol":"BTC-PERP",
-         "orderPrice":"66000",
+         "price"     :"66000",
          "orderQty":"0.0001",
          "stopPrice":"0",
          "stopBy":"market",

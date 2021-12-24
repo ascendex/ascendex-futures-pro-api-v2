@@ -11,7 +11,7 @@
    "args":{
       "time"      : 1613753879921,
       "symbol"    : "BTC-PERP",
-      "orderPrice": "30000",
+      "price"     : "30000",
       "orderQty"  : "0.12",
       "orderType" : "limit",
       "side"      : "buy",
