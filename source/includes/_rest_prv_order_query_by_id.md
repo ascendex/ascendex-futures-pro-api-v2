@@ -35,7 +35,7 @@
         "posStopLossTrigger"  : "None",
         "posTakeProfitPrice"  : "0",
         "posTakeProfitTrigger": "None",
-        "orderPrice"          : "34000",
+        "price"               : "34000",
         "seqNum"              : 18586710,
         "side"                : "Buy",
         "status"              : "New",

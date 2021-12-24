@@ -20,7 +20,7 @@
             "orderType"   : "Limit",                      // order type
             "side"        : "Buy",                        // side
             "symbol"      : "BTC-PERP",                   // contract symbol
-            "orderPrice"  : "9500",                  // order price 
+            "price"       : "9500",                  // order price 
             "orderQty"    : "0.1",                        // order qty
             "stopPrice"   : "0",                          // stop price
             "stopBy"      : "market",                     // stop price trigger 
