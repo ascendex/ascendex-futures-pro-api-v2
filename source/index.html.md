@@ -80,7 +80,7 @@ URL: [https://ascendex.com](https://ascendex.com/)
 
 **Testnet**
 
-Testnet URL: [https://api-test.ascendex-sandbox.io](https://api-test.ascendex-sandbox.io/)
+Testnet URL: [https://api-test.ascendex-sandbox.com](https://api-test.ascendex-sandbox.com/)
 
 You are free to register one or more accounts in the testnet. You can use the magic code **888888** to bypass all verification code checks 
 (email verification, phone number verification, two-step authentication, etc.).
