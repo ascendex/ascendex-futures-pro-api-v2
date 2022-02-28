@@ -142,7 +142,7 @@ Join our official telegram channel: [https://t.me/AscendEX_Official_API](https:/
 ## Change Log
 
 **2022-02-28**
-* Added the [Limit Info API](#risk_limit_info) for futures contracts.
+* Added the [Limit Info API](#risk_limit_info) to get ban info and risk limit info.
 
 **2021-11-22**
 
