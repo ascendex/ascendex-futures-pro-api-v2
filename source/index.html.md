@@ -23,6 +23,7 @@ includes:
   - rest_prv_account
   - rest_prv_account_info
   - rest_prv_account_fee
+  - rest_risk_limit_info
   - rest_prv_account_position
   - rest_prv_free_margin
   - rest_prv_account_change_margin
@@ -140,8 +141,8 @@ Join our official telegram channel: [https://t.me/AscendEX_Official_API](https:/
 
 ## Change Log
 
-**2021-12-02**
-
+**2022-02-28**
+* Added the [Limit Info API](#risk_limit_info) for futures contracts.
 
 **2021-11-22**
 
