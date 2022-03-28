@@ -1,4 +1,4 @@
-### Exchange Risk Limit Info
+### Risk Limit Info
 
 > Risk Limit Info
 
@@ -28,7 +28,7 @@ curl -X GET https://ascendex.com/api/pro/v1/risk-limit-info"
 
 **HTTP Request**
 
-`GET /api/pro/v1/exchange-info`
+`GET /api/pro/v1/risk-limit-info`
 
 #### Request Parameters
 
