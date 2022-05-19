@@ -24,6 +24,7 @@ includes:
   - rest_prv_account_info
   - rest_prv_account_fee
   - rest_risk_limit_info
+  - rest_risk_limit_info_v2
   - rest_prv_account_position
   - rest_prv_free_margin
   - rest_prv_account_change_margin
@@ -140,6 +141,9 @@ Users with good maker strategies and significant trading volume are welcome to p
 Join our official telegram channel: [https://t.me/AscendEX_Official_API](https://t.me/AscendEX_Official_API)
 
 ## Change Log
+**2022-05-19**
+
+[Limit Info API](#risk-limit-info) is deprecated, use  [Limit Info API v2](#risk-limit-info-v2) to get ban info and message threshold info.
 
 **2022-02-28**
 
