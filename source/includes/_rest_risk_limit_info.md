@@ -1,4 +1,6 @@
-### Risk Limit Info
+### Risk Limit Info(Deprecated)
+
+This API has been deprecated, please use [risk limit info v2](#risk-limit-info-v2) instead.
 
 > Risk Limit Info
 
