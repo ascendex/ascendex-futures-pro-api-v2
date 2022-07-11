@@ -153,3 +153,83 @@ This API is for intraday balance change detail from balance event and order fill
     ]
 }
 ```
+
+
+#### Request Parameters
+
+Name           |  Type     | Required |           Value Range         | Description
+-------------- | --------- | -------- | ------------------------------| -----------
+**sn**         | `Long`    |   Yes    |  start from snapshot `sn`     | Start sn 
+**limit**      | `Int`     |   No     |  1 to 500                     | Number of records. max 500 
+
+
+#### Response Content
+
+ Name       | Type         | Description
+----------- | -------------| ---------------------------------
+**meta**    | `Json`       | `meta` info. See detail below
+**order**   | `Json Array` | `order` info. See detail below
+**balance** | `Json Array` | `balance` info. See detail below
+
+##### Meta 
+`meta` field provides some basic info.
+
+`meta` schema
+
+ Name                | Type     | Description      | Sample Response
+-------------------- | -------- | -----------------| -------------------------
+**ac**               | `String` | account category | `"cash", "margin", "futures`
+**accountId**        | `String` | accountId        | 
+
+##### Order
+
+`order` field provides an array of asset balance detail from order fill event.
+
+`order` schema
+
+ Name            | Type        | Description                    | Sample Response
+-----------------| ----------- | -------------------------------| -------------------------
+**liquidityInd** | `String`    | liquidity indicator            | `RemovedLiquidity` for taker order, `AddedLiquidity` for maker order, or `NULL_VAL`
+**orderId**      | `String`    | orderId                        | order Id
+**orderType**    | `String`    | order type                     | `market`, `limit`
+**side**         | `String`    | order side                     | `buy`, `sell`
+**sn**           | `Long`      | sequence number                | unique and increasing sequence number
+**transactTime** | `Long`      | transactTime in milli seconds  |
+**data**         | `Json Array`| list of order info json objects| see detail below
+
+order balance detail by asset
+
+`data` schema
+
+ Name                | Type     | Description                                           | Sample Response
+-------------------- | -------- | ----------------------------------------------------- | ----------------
+**asset**            | `String` | asset code                                            | `"USDT"`
+**curBalance**       | `String` | asset balance after this transaction                  | `"1234.56"`
+**dataType**         | `String` | `trade` for trading asset; `fee` for fee balance asset| `trade`, `fee`
+**deltaQty**         | `String` | balance change in this transaction                    | `100`
+
+##### Balance
+
+`balance` field provides an array of asset balance detail due to balance event.
+
+`balance` schema
+
+ Name            | Type        | Description                      | Sample Response
+-----------------| ----------- | ---------------------------------| -----------------------
+**eventType**    | `String`    | balance event type               | `deposit`, `withdrawal`
+**sn**           | `Long`      | sequence number                  |
+**transactTime** | `Long`      | transactTime in milli seconds    |
+**data**         | `Json Array`| list of balance info json objects| see detail below
+
+`data` schema
+
+ Name                | Type     | Description                                           | Sample Response
+-------------------- | -------- | ----------------------------------------------------- | ----------------
+**asset**            | `String` | asset code                                            | `"USDT"`
+**curBalance**       | `String` | asset balance after this transaction                  | `"1234.56"`
+**deltaQty**         | `String` | balance change in this transaction                    | `100`
+
+
+#### Code Sample
+
+Please refer to python code to [query order and balance detail](https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_balance_and_order_fills.py)
