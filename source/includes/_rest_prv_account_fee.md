@@ -39,7 +39,7 @@ You should sign the message in header as specified in [**Authenticate a RESTful 
 
 `<timestamp>+fee/info`
 
-See a demo at [query fee](https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_fee.py).
+See a demo at [query fee](https://github.com/ascendex/ascendex-pro-api-demo/blob/main/python/query_fee.py).
 
 
 ### Fee Schedule by Symbol
@@ -89,5 +89,5 @@ You should sign the message in header as specified in [**Authenticate a RESTful 
 
 `<timestamp>+fee`
 
-See a demo at [query fee](https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_fee.py).
+See a demo at [query fee](https://github.com/ascendex/ascendex-pro-api-demo/blob/main/python/query_fee.py).
 

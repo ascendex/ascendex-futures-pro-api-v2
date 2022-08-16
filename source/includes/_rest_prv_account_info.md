@@ -59,5 +59,5 @@ transferPermission | Boolean      |
 viewPermission     | Boolean      | 
 userUID            | String       | an unique id associated with user
 
-See a demo at [query private account info](https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_prv_account_info.py).
+See a demo at [query private account info](https://github.com/ascendex/ascendex-pro-api-demo/blob/main/python/query_prv_account_info.py).
 

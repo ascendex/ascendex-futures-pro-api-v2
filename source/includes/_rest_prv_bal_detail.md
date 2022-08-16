@@ -67,7 +67,7 @@ Name        |  Type     | Required |           Value Range       | Description
 
 #### Code Sample
 
-Please refer to python code to [query balance snapshot](https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_balance_and_order_fills.py)
+Please refer to python code to [query balance snapshot](https://github.com/ascendex/ascendex-pro-api-demo/blob/main/python/query_balance_and_order_fills.py)
 
 
 ### Futures Order and Balance Detail
@@ -232,4 +232,4 @@ order balance detail by asset
 
 #### Code Sample
 
-Please refer to python code to [query order and balance detail](https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_balance_and_order_fills.py)
+Please refer to python code to [query order and balance detail](https://github.com/ascendex/ascendex-pro-api-demo/blob/main/python/query_balance_and_order_fills.py)

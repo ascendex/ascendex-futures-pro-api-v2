@@ -182,4 +182,4 @@ Name     | Type   |   value  | Description
 
 #### Code Sample
 
-Please refer python code to [get bar history]{https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_pub_barhist.py}
+Please refer python code to [get bar history]{https://github.com/ascendex/ascendex-pro-api-demo/blob/main/python/query_pub_barhist.py}

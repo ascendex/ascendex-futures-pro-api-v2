@@ -97,4 +97,4 @@ Each ticker object contains the following fields:
 
 #### Code Sample
 
-Please refer to python code to [query ticker info]{https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_pub_ticker.py}
+Please refer to python code to [query ticker info]{https://github.com/ascendex/ascendex-pro-api-demo/blob/main/python/query_pub_ticker.py}
