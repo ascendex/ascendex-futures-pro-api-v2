@@ -433,7 +433,10 @@
                             <a href="#fee-schedule-by-symbol" class="toc-h3 toc-link" data-title="Fee Schedule by Symbol">Fee Schedule by Symbol</a>
                           </li>
                           <li>
-                            <a href="#risk-limit-info" class="toc-h3 toc-link" data-title="Risk Limit Info">Risk Limit Info</a>
+                            <a href="#risk-limit-info-deprecated" class="toc-h3 toc-link" data-title="Risk Limit Info(Deprecated)">Risk Limit Info(Deprecated)</a>
+                          </li>
+                          <li>
+                            <a href="#risk-limit-info-v2" class="toc-h3 toc-link" data-title="Risk Limit Info (v2)">Risk Limit Info (v2)</a>
                           </li>
                           <li>
                             <a href="#position" class="toc-h3 toc-link" data-title="Position">Position</a>
@@ -455,6 +458,9 @@
                           </li>
                           <li>
                             <a href="#withdraw-from-the-futures-account" class="toc-h3 toc-link" data-title="Withdraw from the Futures Account">Withdraw from the Futures Account</a>
+                          </li>
+                          <li>
+                            <a href="#funding-payment-history" class="toc-h3 toc-link" data-title="Funding Payment History">Funding Payment History</a>
                           </li>
                       </ul>
                   </li>
@@ -676,6 +682,14 @@ URL: <a href="https://ascendex.com/">https://ascendex.com</a></p>
 <h2 id='got-questions'>Got Questions?</h2>
 <p>Join our official telegram channel: <a href="https://t.me/AscendEX_Official_API">https://t.me/AscendEX_Official_API</a></p>
 <h2 id='change-log'>Change Log</h2>
+<p><strong>2022-08-16</strong></p>
+
+<p><a href="#funding-payment-history">Funding Payment History</a> added to get account funding payment history.</p>
+
+<p><strong>2022-05-19</strong></p>
+
+<p><a href="#risk-limit-info">Limit Info API</a> is deprecated, use  <a href="#risk-limit-info-v2">Limit Info API v2</a> to get ban info and message threshold info.</p>
+
 <p><strong>2022-02-28</strong></p>
 
 <ul>
@@ -1734,7 +1748,9 @@ The <code>timestamp</code> is the UTC timestamp in milliseconds. The <code>api-p
 <p><code>&lt;timestamp&gt;+fee</code></p>
 
 <p>See a demo at <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_fee.py">query fee</a>.</p>
-<h3 id='risk-limit-info'>Risk Limit Info</h3>
+<h3 id='risk-limit-info-deprecated'>Risk Limit Info(Deprecated)</h3>
+<p>This API has been deprecated, please use <a href="#risk-limit-info-v2">risk limit info v2</a> instead.</p>
+
 <blockquote>
 <p>Risk Limit Info</p>
 </blockquote>
@@ -1762,6 +1778,120 @@ The <code>timestamp</code> is the UTC timestamp in milliseconds. The <code>api-p
 <p><strong>HTTP Request</strong></p>
 
 <p><code>GET /api/pro/v1/risk-limit-info</code></p>
+<h4 id='request-parameters'>Request Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Value Range</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ip</td>
+<td>String</td>
+<td>No</td>
+<td>valid ip address</td>
+<td>the client&#39;s ip address to be checked if it is banned due to violation of risk limits.</td>
+</tr>
+</tbody></table>
+<h3 id='risk-limit-info-v2'>Risk Limit Info (v2)</h3>
+<blockquote>
+<p>Risk Limit Info v2</p>
+</blockquote>
+
+<p>Our message thresholds in web socket are based on <code>op</code> field and <code>action</code> field.  Each threshold will have two levels, which are based on counts of messages received in <code>1</code> minute. If level 1 threshold is violated, this type of messages will be ignored in the following 15 minutes, other functions are not affected. If you keep sending these messages and triggered level 2 threshold, the violated WebSocket session will be killed and this ip will be banned for 15 minutes. Currently, We have following threshold groups:</p>
+
+<ul>
+<li><p><code>admin op</code>, includes <code>auth/ping/pong</code></p></li>
+<li><p><code>stream op</code>, includes <code>sub/unsub</code></p></li>
+<li><p><code>req op</code>, includes all <code>req</code> op, but <code>order req</code> and <code>snapshot req</code> have their own thresholds</p>
+
+<ul>
+<li><code>order req</code>, includes <code>place_order/cancel_order/cancel_all</code></li>
+<li><code>snapshot req</code>, includes <code>depth_snapshot/depth_snapshot_top100</code></li>
+</ul></li>
+</ul>
+
+<p>All the operations fall into same <code>op</code>/<code>req</code> group will share a threshold, meaning the sum of count of these messages should not violate the threshold.</p>
+
+<p>For <code>req op</code>, we have two fine granularity threshold <code>order req</code> and <code>snapshot req</code>, which will have their specialized threshold value for messages belonging to their types.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>curl -X GET https://ascendex.com/api/pro/v2/risk-limit-info"
+</code></pre></div>
+<blockquote>
+<p>Risk Limit Info - Sample response::</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"173.123.133.23"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"webSocket"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"isBanned"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bannedUntil"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"violationCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"limits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"maxWebSocketSessionsPerIpAccountGroup"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"maxWebSocketSessionsPerIpTotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"messageThreshold"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"level1OpThreshold"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"auth"</span><span class="p">:</span><span class="w"> </span><span class="mi">800</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ping"</span><span class="p">:</span><span class="w"> </span><span class="mi">800</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"pong"</span><span class="p">:</span><span class="w"> </span><span class="mi">800</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"sub"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"unsub"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"req"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"level2OpThreshold"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"auth"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ping"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"pong"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"sub"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"unsub"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"req"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"level1ReqThreshold"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"place_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"cancel_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"cancel_all"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"batch_place_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"batch_cancel_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"depth_snapshot"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"depth_snapshot_top100"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"market_trades"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"open_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"margin_risk"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"futures_account_snapshot"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"futures_open_orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"level2ReqThreshold"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"place_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"cancel_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"cancel_all"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"batch_place_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"batch_cancel_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"depth_snapshot"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"depth_snapshot_top100"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"market_trades"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"open_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"margin_risk"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"futures_account_snapshot"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"futures_open_orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><strong>HTTP Request</strong></p>
+
+<p><code>GET /api/pro/v2/risk-limit-info</code></p>
 <h4 id='request-parameters'>Request Parameters</h4>
 <table><thead>
 <tr>
@@ -2102,6 +2232,72 @@ In which case, your USDT balance will become negative after the operation. </p>
 <td>String</td>
 <td>Yes</td>
 <td>the amount to withdraw in string type, e.g. &quot;1&quot;. Only positive value is allowed.</td>
+</tr>
+</tbody></table>
+<h3 id='funding-payment-history'>Funding Payment History</h3>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fundingRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00003666"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"paymentInUSDT"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000142423"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1642780800000</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fundingRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000109429"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"paymentInUSDT"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000428031"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-PERP"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1642752000000</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"hasNext"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pageSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Get funding payment history of your account. </p>
+
+<p><strong>HTTP Request</strong></p>
+
+<p><code>GET /&lt;grp&gt;/api/pro/v2/futures/funding-payments</code></p>
+
+<p><strong>Prehash String</strong></p>
+
+<p><code>&lt;timestamp&gt;+v2/futures/funding-payments</code></p>
+
+<p><strong>Request Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>symbol</code></td>
+<td>String</td>
+<td>No</td>
+<td>e.g. <code>BTCUSDT</code></td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>Int</td>
+<td>No</td>
+<td>page number, default 1</td>
+</tr>
+<tr>
+<td><code>pageSize</code></td>
+<td>Int</td>
+<td>No</td>
+<td>size of the page, 1~100, default 20.</td>
 </tr>
 </tbody></table>
 <h2 id='order'>Order</h2><h3 id='generate-order-id'>Generate Order Id</h3>
@@ -3079,7 +3275,246 @@ In which case, your USDT balance will become negative after the operation. </p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='websocket'>WebSocket</h1><h2 id='how-to-connect'>How to Connect</h2>
+</span></code></pre></div><h4 id='request-parameters-2'>Request Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Value Range</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>sn</strong></td>
+<td><code>Long</code></td>
+<td>Yes</td>
+<td>start from snapshot <code>sn</code></td>
+<td>Start sn</td>
+</tr>
+<tr>
+<td><strong>limit</strong></td>
+<td><code>Int</code></td>
+<td>No</td>
+<td>1 to 500</td>
+<td>Number of records. max 500</td>
+</tr>
+</tbody></table>
+<h4 id='response-content-2'>Response Content</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>meta</strong></td>
+<td><code>Json</code></td>
+<td><code>meta</code> info. See detail below</td>
+</tr>
+<tr>
+<td><strong>order</strong></td>
+<td><code>Json Array</code></td>
+<td><code>order</code> info. See detail below</td>
+</tr>
+<tr>
+<td><strong>balance</strong></td>
+<td><code>Json Array</code></td>
+<td><code>balance</code> info. See detail below</td>
+</tr>
+</tbody></table>
+<h5 id='meta'>Meta</h5>
+<p><code>meta</code> field provides some basic info.</p>
+
+<p><code>meta</code> schema</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Sample Response</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ac</strong></td>
+<td><code>String</code></td>
+<td>account category</td>
+<td><code>&quot;cash&quot;, &quot;margin&quot;, &quot;futures</code></td>
+</tr>
+<tr>
+<td><strong>accountId</strong></td>
+<td><code>String</code></td>
+<td>accountId</td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id='order'>Order</h5>
+<p><code>order</code> field provides an array of asset balance detail from order fill event.</p>
+
+<p><code>order</code> schema</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Sample Response</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>liquidityInd</strong></td>
+<td><code>String</code></td>
+<td>liquidity indicator</td>
+<td><code>RemovedLiquidity</code> for taker order, <code>AddedLiquidity</code> for maker order, or <code>NULL_VAL</code></td>
+</tr>
+<tr>
+<td><strong>orderId</strong></td>
+<td><code>String</code></td>
+<td>orderId</td>
+<td>order Id</td>
+</tr>
+<tr>
+<td><strong>orderType</strong></td>
+<td><code>String</code></td>
+<td>order type</td>
+<td><code>market</code>, <code>limit</code></td>
+</tr>
+<tr>
+<td><strong>side</strong></td>
+<td><code>String</code></td>
+<td>order side</td>
+<td><code>buy</code>, <code>sell</code></td>
+</tr>
+<tr>
+<td><strong>sn</strong></td>
+<td><code>Long</code></td>
+<td>sequence number</td>
+<td>unique and increasing sequence number</td>
+</tr>
+<tr>
+<td><strong>transactTime</strong></td>
+<td><code>Long</code></td>
+<td>transactTime in milli seconds</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>data</strong></td>
+<td><code>Json Array</code></td>
+<td>list of order info json objects</td>
+<td>see detail below</td>
+</tr>
+</tbody></table>
+
+<p>order balance detail by asset</p>
+
+<p><code>data</code> schema</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Sample Response</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>asset</strong></td>
+<td><code>String</code></td>
+<td>asset code</td>
+<td><code>&quot;USDT&quot;</code></td>
+</tr>
+<tr>
+<td><strong>curBalance</strong></td>
+<td><code>String</code></td>
+<td>asset balance after this transaction</td>
+<td><code>&quot;1234.56&quot;</code></td>
+</tr>
+<tr>
+<td><strong>dataType</strong></td>
+<td><code>String</code></td>
+<td><code>trade</code> for trading asset; <code>fee</code> for fee balance asset</td>
+<td><code>trade</code>, <code>fee</code></td>
+</tr>
+<tr>
+<td><strong>deltaQty</strong></td>
+<td><code>String</code></td>
+<td>balance change in this transaction</td>
+<td><code>100</code></td>
+</tr>
+</tbody></table>
+<h5 id='balance'>Balance</h5>
+<p><code>balance</code> field provides an array of asset balance detail due to balance event.</p>
+
+<p><code>balance</code> schema</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Sample Response</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>eventType</strong></td>
+<td><code>String</code></td>
+<td>balance event type</td>
+<td><code>deposit</code>, <code>withdrawal</code></td>
+</tr>
+<tr>
+<td><strong>sn</strong></td>
+<td><code>Long</code></td>
+<td>sequence number</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>transactTime</strong></td>
+<td><code>Long</code></td>
+<td>transactTime in milli seconds</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>data</strong></td>
+<td><code>Json Array</code></td>
+<td>list of balance info json objects</td>
+<td>see detail below</td>
+</tr>
+</tbody></table>
+
+<p><code>data</code> schema</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Sample Response</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>asset</strong></td>
+<td><code>String</code></td>
+<td>asset code</td>
+<td><code>&quot;USDT&quot;</code></td>
+</tr>
+<tr>
+<td><strong>curBalance</strong></td>
+<td><code>String</code></td>
+<td>asset balance after this transaction</td>
+<td><code>&quot;1234.56&quot;</code></td>
+</tr>
+<tr>
+<td><strong>deltaQty</strong></td>
+<td><code>String</code></td>
+<td>balance change in this transaction</td>
+<td><code>100</code></td>
+</tr>
+</tbody></table>
+<h4 id='code-sample-2'>Code Sample</h4>
+<p>Please refer to python code to <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_balance_and_order_fills.py">query order and balance detail</a></p>
+<h1 id='websocket'>WebSocket</h1><h2 id='how-to-connect'>How to Connect</h2>
 <p>Base endpoints:</p>
 
 <ul>
