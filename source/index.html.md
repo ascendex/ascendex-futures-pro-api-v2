@@ -31,6 +31,7 @@ includes:
   - rest_prv_account_change_margin_type
   - rest_prv_account_change_leverage
   - rest_prv_account_transfer
+  - rest_prv_account_funding_hist
   - rest_prv_order
   - rest_prv_order_generate_id
   - rest_prv_order_new
@@ -141,6 +142,10 @@ Users with good maker strategies and significant trading volume are welcome to p
 Join our official telegram channel: [https://t.me/AscendEX_Official_API](https://t.me/AscendEX_Official_API)
 
 ## Change Log
+**2022-08-16**
+
+[Funding Payment History](#funding-payment-history) added to get account funding payment history.
+
 **2022-05-19**
 
 [Limit Info API](#risk-limit-info) is deprecated, use  [Limit Info API v2](#risk-limit-info-v2) to get ban info and message threshold info.
