@@ -1334,7 +1334,7 @@ only 500 bars will be returned. </li>
 </tr>
 </tbody></table>
 <h4 id='code-sample'>Code Sample</h4>
-<p>Please refer python code to [get bar history]{https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_pub_barhist.py}</p>
+<p>Please refer python code to [get bar history]{https://github.com/ascendex/ascendex-pro-api-demo/blob/main/python/query_pub_barhist.py}</p>
 <h3 id='ticker'>Ticker</h3>
 <blockquote>
 <p>Ticker for one trading pair</p>
@@ -1476,7 +1476,7 @@ If you want to wrap the object in a one-element list, append a comma to the symb
 </tr>
 </tbody></table>
 <h4 id='code-sample'>Code Sample</h4>
-<p>Please refer to python code to [query ticker info]{https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_pub_ticker.py}</p>
+<p>Please refer to python code to [query ticker info]{https://github.com/ascendex/ascendex-pro-api-demo/blob/main/python/query_pub_ticker.py}</p>
 <h2 id='authenticate-a-restful-request'>Authenticate a RESTful Request</h2><h3 id='create-request'>Create Request</h3>
 <p>To access private data via RESTful APIs, you must include the following headers:</p>
 
@@ -1661,7 +1661,7 @@ The <code>timestamp</code> is the UTC timestamp in milliseconds. The <code>api-p
 </tr>
 </tbody></table>
 
-<p>See a demo at <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_prv_account_info.py">query private account info</a>.</p>
+<p>See a demo at <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/main/python/query_prv_account_info.py">query private account info</a>.</p>
 <h3 id='vip-fee-schedule'>VIP Fee Schedule</h3>
 <blockquote>
 <p>Fee Schedule - Sample response for general info::</p>
@@ -1701,7 +1701,7 @@ The <code>timestamp</code> is the UTC timestamp in milliseconds. The <code>api-p
 
 <p><code>&lt;timestamp&gt;+fee/info</code></p>
 
-<p>See a demo at <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_fee.py">query fee</a>.</p>
+<p>See a demo at <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/main/python/query_fee.py">query fee</a>.</p>
 <h3 id='fee-schedule-by-symbol'>Fee Schedule by Symbol</h3>
 <blockquote>
 <p>Fee Schedule - Sample response for each symbol::</p>
@@ -1747,7 +1747,7 @@ The <code>timestamp</code> is the UTC timestamp in milliseconds. The <code>api-p
 
 <p><code>&lt;timestamp&gt;+fee</code></p>
 
-<p>See a demo at <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_fee.py">query fee</a>.</p>
+<p>See a demo at <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/main/python/query_fee.py">query fee</a>.</p>
 <h3 id='risk-limit-info-deprecated'>Risk Limit Info(Deprecated)</h3>
 <p>This API has been deprecated, please use <a href="#risk-limit-info-v2">risk limit info v2</a> instead.</p>
 
@@ -2300,6 +2300,10 @@ In which case, your USDT balance will become negative after the operation. </p>
 <td>size of the page, 1~100, default 20.</td>
 </tr>
 </tbody></table>
+
+<p><strong>Code Sample</strong></p>
+
+<p>Please refer to python code to <a href="https://github.com/ascendex/ascendex-futures-api-demo-v2/blob/main/cli/get-funding-history.py">get funding history</a></p>
 <h2 id='order'>Order</h2><h3 id='generate-order-id'>Generate Order Id</h3>
 <p>We use the following method to generate an unique id for each order place/cancel request. (You could get <code>userUID</code> from <code>Account Info</code> API.)</p>
 
@@ -3197,7 +3201,7 @@ In which case, your USDT balance will become negative after the operation. </p>
 </tr>
 </tbody></table>
 <h4 id='code-sample'>Code Sample</h4>
-<p>Please refer to python code to <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_balance_and_order_fills.py">query balance snapshot</a></p>
+<p>Please refer to python code to <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/main/python/query_balance_and_order_fills.py">query balance snapshot</a></p>
 <h3 id='futures-order-and-balance-detail'>Futures Order and Balance Detail</h3>
 <p>This API is for intraday balance change detail from balance event and order fillss.</p>
 <h4 id='http-request-2'>HTTP Request</h4>
@@ -3513,7 +3517,7 @@ In which case, your USDT balance will become negative after the operation. </p>
 </tr>
 </tbody></table>
 <h4 id='code-sample-2'>Code Sample</h4>
-<p>Please refer to python code to <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/query_balance_and_order_fills.py">query order and balance detail</a></p>
+<p>Please refer to python code to <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/main/python/query_balance_and_order_fills.py">query order and balance detail</a></p>
 <h1 id='websocket'>WebSocket</h1><h2 id='how-to-connect'>How to Connect</h2>
 <p>Base endpoints:</p>
 
@@ -3909,7 +3913,7 @@ you can use to update the order book snapshot. In the message, <code>price</code
 <li>if <code>size</code> is zero, you should <strong>delete</strong> the level at <code>price</code>. </li>
 </ul>
 
-<p>See <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/master/python/websocket_orderbook_snapshot.py">Orderbook Snapshot</a> for code examples.</p>
+<p>See <a href="https://github.com/ascendex/ascendex-pro-api-demo/blob/main/python/websocket_orderbook_snapshot.py">Orderbook Snapshot</a> for code examples.</p>
 <h3 id='channel-market-trades'>Channel: Market Trades</h3>
 <blockquote>
 <p>Subscribe to <code>BTC-PERP</code> market trades stream</p>
